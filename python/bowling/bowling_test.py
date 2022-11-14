@@ -11,6 +11,7 @@ def test_creates_correct_number_of_frames():
     frame_line = '9-|9-|9-|9-|9-|9-|9-|9-|9-|9-||'
     game = Game(frame_line)
     
+    assert len(game._frames) == 10
     assert game.get_frame(1)._first_pin == 9
     assert game.get_frame(1)._second_pin == 0
 

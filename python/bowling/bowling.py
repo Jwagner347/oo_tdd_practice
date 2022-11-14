@@ -17,9 +17,11 @@ class Game:
 
 class Frame:
     def __init__(self, pins_down) -> None:
-        # refactor this to be a method
-        first_pin_string = list(pins_down)[0]
-        second_pin_string = list(pins_down)[1]
+        self.set_pins(pins_down)
+        
+    def set_pins(self, pins):
+        first_pin_string = list(pins)[0]
+        second_pin_string = list(pins)[1]
         
         if first_pin_string == '-':
             first_pin_string = 0
