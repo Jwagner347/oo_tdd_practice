@@ -33,7 +33,10 @@ class Frame:
             second_pin_string = 0
 
         self._first_pin = int(first_pin_string)
-        self._second_pin = int(second_pin_string)
+        if second_pin_string == '/':
+            self._second_pin = 10 - self._first_pin
+        else:
+            self._second_pin = int(second_pin_string)
         
     # def calculate_pins_only_score(self):
     #     first_pin, second_pin = list(self._pins_down)
