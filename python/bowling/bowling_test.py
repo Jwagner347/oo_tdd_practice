@@ -33,11 +33,11 @@ def test_can_calculate_frame_score_with_spares():
     
     assert game.get_frame(2)._frame_score == 10
     
-# def test_can_calculate_frame_score_with_strikes():
-#     frame_line = '9-|X|9-|9-|9-|9-|9-|9-|9-|9-||'
-#     game = Game(frame_line)
+def test_can_calculate_frame_score_with_strikes():
+    frame_line = '9-|X|9-|9-|9-|9-|9-|9-|9-|9-||'
+    game = Game(frame_line)
     
-#     assert game.get_frame(2)._frame_score == 10
+    assert game.get_frame(2)._frame_score == 10
 
 def test_does_not_accept_score_greater_than_ten_per_frame():
     pass

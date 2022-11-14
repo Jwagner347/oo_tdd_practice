@@ -36,7 +36,7 @@ class Frame:
         return first_pin, second_pin
         
     def set_frame_score(self):
-        if self._second_ball == '/' or self._first_ball == 'X':
+        if self._first_ball == 'X' or self._second_ball == '/':
             self._frame_score = 10
         else:
             if self._first_ball == '-':
@@ -51,9 +51,11 @@ class Frame:
             self._frame_score = first_pin + second_pin
         
     def set_balls(self, pins):
-        self._first_ball = list(pins)[0]
-        self._second_ball = list(pins)[1]
-        
+        if len(pins) == 2:
+            self._first_ball = list(pins)[0]
+            self._second_ball = list(pins)[1]
+        else:
+            self._first_ball = list(pins)[0]
     # def calculate_pins_only_score(self):
     #     first_pin, second_pin = list(self._pins_down)
     #     if first_pin == '/' or second_pin == '/':
