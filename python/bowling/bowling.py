@@ -18,6 +18,10 @@ class Game:
 class Frame:
     def __init__(self, pins_down) -> None:
         self.set_pins(pins_down)
+        self.set_frame_score()
+        
+    def set_frame_score(self):
+        self._frame_score = self._first_pin + self._second_pin
         
     def set_pins(self, pins):
         first_pin_string = list(pins)[0]
