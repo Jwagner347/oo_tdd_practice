@@ -17,26 +17,42 @@ class Game:
 
 class Frame:
     def __init__(self, pins_down) -> None:
-        self.set_pins(pins_down)
+        self.set_balls(pins_down)
         self.set_frame_score()
         
-    def set_frame_score(self):
-        self._frame_score = self._first_pin + self._second_pin
-        
-    def set_pins(self, pins):
-        first_pin_string = list(pins)[0]
-        second_pin_string = list(pins)[1]
-        
-        if first_pin_string == '-':
-            first_pin_string = 0
-        if second_pin_string == '-':
-            second_pin_string = 0
+    def transform_balls(ball1, ball2):
+        if ball1 == '-':
+            first_pin = 0
+        if ball2 == '-':
+            second_pin = 0
+            
+        if ball1 == 'X':
+            first_pin = 10
+        if ball2 == 'X':
+            second_pin = 10
+        if pin == 'X':
+            return 10
 
-        self._first_pin = int(first_pin_string)
-        if second_pin_string == '/':
-            self._second_pin = 10 - self._first_pin
+        return first_pin, second_pin
+        
+    def set_frame_score(self):
+        if self._second_ball == '/' or self._first_ball == 'X':
+            self._frame_score = 10
         else:
-            self._second_pin = int(second_pin_string)
+            if self._first_ball == '-':
+                first_pin = 0
+            else:
+                first_pin = int(self._first_ball)
+            if self._second_ball == '-':
+                second_pin = 0
+            else:
+                second_pin = int(self._second_ball)
+
+            self._frame_score = first_pin + second_pin
+        
+    def set_balls(self, pins):
+        self._first_ball = list(pins)[0]
+        self._second_ball = list(pins)[1]
         
     # def calculate_pins_only_score(self):
     #     first_pin, second_pin = list(self._pins_down)
