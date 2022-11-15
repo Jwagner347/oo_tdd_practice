@@ -22,19 +22,6 @@ class Frame:
         self.set_balls(pins_down)
         self.set_frame_score()
         
-    def transform_balls(ball1, ball2):
-        if ball1 == '-':
-            first_pin = 0
-        if ball2 == '-':
-            second_pin = 0
-            
-        if ball1 == 'X':
-            first_pin = 10
-        if ball2 == 'X':
-            second_pin = 10
-
-        return first_pin, second_pin
-        
     def set_frame_score(self):
         if not hasattr(self, '_second_ball'):
             self._frame_score = 10 if self._first_ball == 'X' else int(self._first_ball)
