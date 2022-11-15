@@ -37,10 +37,7 @@ class Frame:
         
     def set_frame_score(self):
         if not hasattr(self, '_second_ball'):
-            if self._first_ball == 'X':
-                self._frame_score = 10
-            else:
-                self._frame_score = int(self._first_ball)
+            self._frame_score = 10 if self._first_ball == 'X' else int(self._first_ball)
         elif self._second_ball == '/':
             self._frame_score = 10
         else:
