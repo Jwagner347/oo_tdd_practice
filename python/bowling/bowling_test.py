@@ -38,6 +38,18 @@ def test_can_calculate_frame_score_with_strikes():
     game = Game(frame_line)
     
     assert game.get_frame(2)._frame_score == 10
+    
+def test_can_handle_bonus_balls_at_end():
+    frame_line = '5/|5/|5/|5/|5/|5/|5/|5/|5/|5/||5'
+    game = Game(frame_line)
+    
+    assert game.get_frame(11)._frame_score == 5
+    
+# def test_can_handle_no_bonus_balls_at_end():
+#     frame_line = '5/|5/|5/|5/|5/|5/|5/|5/|5/|5-||'
+#     game = Game(frame_line)
+    
+#     assert game.get_frame(11)._frame_score == 5
 
 def test_does_not_accept_score_greater_than_ten_per_frame():
     pass
