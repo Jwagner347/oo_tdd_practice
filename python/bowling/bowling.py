@@ -16,6 +16,17 @@ class Game:
     
     def get_frame(self, frame_num):
         return self._frames[frame_num]
+    
+    def calculate_score(self):
+        score = 0
+        frame = 1
+        while frame <= 10:
+            additional_score = 0
+            if self._frames[frame]._second_ball == '/':
+                additional_score = int(self._frames[frame + 1]._first_ball)
+            score += self._frames[frame]._frame_score + additional_score
+            frame+=1
+        return score
 
 class Frame:
     def __init__(self, pins_down) -> None:
