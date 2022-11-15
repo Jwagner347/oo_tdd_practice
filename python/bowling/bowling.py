@@ -41,14 +41,8 @@ class Frame:
         elif self._second_ball == '/':
             self._frame_score = 10
         else:
-            if self._first_ball == '-':
-                first_pin = 0
-            else:
-                first_pin = int(self._first_ball)
-            if self._second_ball == '-':
-                second_pin = 0
-            else:
-                second_pin = int(self._second_ball)
+            first_pin = 0 if self._first_ball == '-' else int(self._first_ball)
+            second_pin = 0 if self._second_ball == '-' else int(self._second_ball)
 
             self._frame_score = first_pin + second_pin
         
