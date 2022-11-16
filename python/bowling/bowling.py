@@ -19,7 +19,9 @@ class Game:
     
     def calculate_additional_score(self, current_frame):
         additional_score = 0
-        if self._frames[current_frame]._first_ball == "X":
+        if current_frame == 10 and (self._frames[current_frame]._first_ball == "X" or self._frames[current_frame]._second_ball == "/"):
+            additional_score = self._frames[current_frame+1]._frame_score
+        elif self._frames[current_frame]._first_ball == "X":
             if self._frames[current_frame+1]._first_ball == 'X':
                 additional_score = 10 + self._frames[current_frame+2]._first_ball_num
             else:
@@ -53,8 +55,19 @@ class Frame:
         elif self._second_ball == '/':
             self._frame_score = 10
         else:
-            first_pin = 0 if self._first_ball == '-' else int(self._first_ball)
-            second_pin = 0 if self._second_ball == '-' else int(self._second_ball)
+            if self._first_ball == '-':
+                first_pin = 0
+            elif self._first_ball == 'X':
+                first_pin = 10
+            else:
+                first_pin = int(self._first_ball)
+                
+            if self._second_ball == '-':
+                second_pin = 0
+            elif self._second_ball == 'X':
+                second_pin = 10
+            else:
+                second_pin = int(self._second_ball)
 
             self._frame_score = first_pin + second_pin
         
@@ -80,6 +93,8 @@ class Frame:
                         self._second_ball_num = 10 - self._first_ball_num
                     case "-":
                         self._second_ball_num = 0
+                    case "X":
+                        self._second_ball_num = 10
                     case _:
                         self._second_ball_num = int(self._second_ball)
         

@@ -62,14 +62,17 @@ def test_calculates_game_score_only_numbers():
 def test_calculates_game_score_mix_numbers_and_strikes_spares():
     frame_line1 = '5/|5/|5/|5/|5/|5/|5/|5/|5/|5/||5'
     frame_line2 = 'X|7/|9-|X|-8|8/|-6|X|X|X||81'
-    # frame_line3 = 'X|X|X|X|X|X|X|X|X|X||XX'
+    frame_line3 = 'X|X|X|X|X|X|X|X|X|X||XX'
+    frame_line4 = 'X|7/|9-|X|-8|8/|-6|X|X|X||82'
+    frame_line5 = 'X|7/|9-|X|-8|8/|-6|X|X|X||8/'
     game1 = Game(frame_line1)
     game2 = Game(frame_line2)
-    # game3 = Game(frame_line3)
+    game3 = Game(frame_line3)
+    game4 = Game(frame_line4)
+    game5 = Game(frame_line5)
     
     assert game1.calculate_score() == 150
     assert game2.calculate_score() == 167
-    # assert game3.calculate_score() == 300
-
-def test_does_not_accept_score_greater_than_ten_per_frame():
-    pass
+    assert game3.calculate_score() == 300
+    assert game4.calculate_score() == 168
+    assert game5.calculate_score() == 168
