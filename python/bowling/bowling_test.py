@@ -6,6 +6,8 @@ def test_can_parse_both_pins():
     frame = Frame("45")
     assert frame._first_ball == "4"
     assert frame._second_ball == "5"
+    assert frame._first_ball_num == 4
+    assert frame._second_ball_num == 5
     
 def test_creates_correct_number_of_frames():
     frame_line = '9-|9-|9-|9-|9-|9-|9-|9-|9-|9-||'
@@ -59,14 +61,14 @@ def test_calculates_game_score_only_numbers():
     
 def test_calculates_game_score_mix_numbers_and_strikes_spares():
     frame_line1 = '5/|5/|5/|5/|5/|5/|5/|5/|5/|5/||5'
-    # frame_line2 = 'X|7/|9-|X|-8|8/|-6|X|X|X||81'
+    frame_line2 = 'X|7/|9-|X|-8|8/|-6|X|X|X||81'
     # frame_line3 = 'X|X|X|X|X|X|X|X|X|X||XX'
     game1 = Game(frame_line1)
-    # game2 = Game(frame_line2)
+    game2 = Game(frame_line2)
     # game3 = Game(frame_line3)
     
     assert game1.calculate_score() == 150
-    # assert game2.calculate_score() == 167
+    assert game2.calculate_score() == 167
     # assert game3.calculate_score() == 300
 
 def test_does_not_accept_score_greater_than_ten_per_frame():

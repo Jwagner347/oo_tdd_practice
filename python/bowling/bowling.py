@@ -17,20 +17,34 @@ class Game:
     def get_frame(self, frame_num):
         return self._frames[frame_num]
     
+    def calculate_additional_score(self, current_frame):
+        additional_score = 0
+        if self._frames[current_frame]._first_ball == "X":
+            if self._frames[current_frame+1]._first_ball == 'X':
+                additional_score = 10 + self._frames[current_frame+2]._first_ball_num
+            else:
+                additional_score = self._frames[current_frame+1]._frame_score
+        elif self._frames[current_frame]._second_ball == "/":
+            additional_score = self._frames[current_frame+1]._first_ball_num
+        
+        return additional_score
+    
     def calculate_score(self):
         score = 0
         frame = 1
+
         while frame <= 10:
-            additional_score = 0
-            if self._frames[frame]._second_ball == '/':
-                additional_score = int(self._frames[frame + 1]._first_ball)
+            additional_score = self.calculate_additional_score(frame)
+            
             score += self._frames[frame]._frame_score + additional_score
             frame+=1
+            
         return score
 
 class Frame:
     def __init__(self, pins_down) -> None:
         self.set_balls(pins_down)
+        self.set_balls_num()
         self.set_frame_score()
         
     def set_frame_score(self):
@@ -50,3 +64,23 @@ class Frame:
             self._second_ball = list(pins)[1]
         else:
             self._first_ball = list(pins)[0]
+            
+    def set_balls_num(self):
+        match self._first_ball:
+                case "X":
+                    self._first_ball_num = 10
+                case "-":
+                    self._first_ball_num = 0
+                case _:
+                    self._first_ball_num = int(self._first_ball)
+                    
+        if hasattr(self, '_second_ball'):
+            match self._second_ball:
+                    case "/":
+                        self._second_ball_num = 10 - self._first_ball_num
+                    case "-":
+                        self._second_ball_num = 0
+                    case _:
+                        self._second_ball_num = int(self._second_ball)
+        
+        
